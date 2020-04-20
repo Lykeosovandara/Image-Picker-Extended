@@ -120,7 +120,9 @@ class ImagePickerExtends {
               height: 5,
               width: 60,
               decoration: BoxDecoration(
-                  color: iconColor, borderRadius: BorderRadius.circular(10)),
+                color: Colors.black45,
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -159,7 +161,7 @@ class ImagePickerExtends {
                         iconSize: 64,
                         icon: Icon(
                           Icons.photo,
-                          color: Colors.black45,
+                          color: iconColor,
                         ),
                         onPressed: () async {
                           Navigator.pop(context);
@@ -184,3 +186,7 @@ class ImagePickerExtends {
     );
   }
 }
+
+// Command
+// flutter pub publish --dry-run
+// flutter pub publish
