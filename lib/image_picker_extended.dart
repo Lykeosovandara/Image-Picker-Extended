@@ -104,7 +104,8 @@ class ImagePickerExtends {
   }
 
   static void chooseImage(BuildContext context,
-      {Function(File file) selectedImage}) {
+      {@required Function(File file) selectedImage,
+      Color iconColor = Colors.black45}) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) => Container(
@@ -119,8 +120,7 @@ class ImagePickerExtends {
               height: 5,
               width: 60,
               decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(10)),
+                  color: iconColor, borderRadius: BorderRadius.circular(10)),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -134,7 +134,7 @@ class ImagePickerExtends {
                         iconSize: 64,
                         icon: Icon(
                           Icons.camera_alt,
-                          color: Colors.black45,
+                          color: iconColor,
                         ),
                         onPressed: () async {
                           Navigator.pop(context);
@@ -144,7 +144,10 @@ class ImagePickerExtends {
                       ),
                     ),
                     Container(
-                      child: Text('Camera'),
+                      child: Text(
+                        'Camera',
+                        style: TextStyle(color: iconColor),
+                      ),
                     )
                   ],
                 ),
@@ -166,7 +169,10 @@ class ImagePickerExtends {
                       ),
                     ),
                     Container(
-                      child: Text('Gallery'),
+                      child: Text(
+                        'Gallery',
+                        style: TextStyle(color: iconColor),
+                      ),
                     )
                   ],
                 )
