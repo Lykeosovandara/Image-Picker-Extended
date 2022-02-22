@@ -108,79 +108,81 @@ class ImagePickerExtends {
       Color iconColor = Colors.black45}) {
     showModalBottomSheet(
       context: context,
-      builder: (BuildContext context) => Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: Colors.white38, borderRadius: BorderRadius.circular(50)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Container(
-              height: 5,
-              width: 60,
-              decoration: BoxDecoration(
-                color: Colors.black45,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      child: IconButton(
-                        iconSize: 64,
-                        icon: Icon(
-                          Icons.camera_alt,
-                          color: iconColor,
-                        ),
-                        onPressed: () async {
-                          Navigator.pop(context);
-                          final file = await chooseCamera(context);
-                          selectedImage(file);
-                        },
-                      ),
-                    ),
-                    Container(
-                      child: Text(
-                        'Camera',
-                        style: TextStyle(color: iconColor),
-                      ),
-                    )
-                  ],
+      builder: (BuildContext context) => SafeArea(
+        child: Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              color: Colors.white38, borderRadius: BorderRadius.circular(50)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                height: 5,
+                width: 60,
+                decoration: BoxDecoration(
+                  color: Colors.black45,
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      child: IconButton(
-                        iconSize: 64,
-                        icon: Icon(
-                          Icons.photo,
-                          color: iconColor,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        child: IconButton(
+                          iconSize: 64,
+                          icon: Icon(
+                            Icons.camera_alt,
+                            color: iconColor,
+                          ),
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            final file = await chooseCamera(context);
+                            selectedImage(file);
+                          },
                         ),
-                        onPressed: () async {
-                          Navigator.pop(context);
-                          final file = await chooseGallery(context);
-                          selectedImage(file);
-                        },
                       ),
-                    ),
-                    Container(
-                      child: Text(
-                        'Gallery',
-                        style: TextStyle(color: iconColor),
+                      Container(
+                        child: Text(
+                          'Camera',
+                          style: TextStyle(color: iconColor),
+                        ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        child: IconButton(
+                          iconSize: 64,
+                          icon: Icon(
+                            Icons.photo,
+                            color: iconColor,
+                          ),
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            final file = await chooseGallery(context);
+                            selectedImage(file);
+                          },
+                        ),
                       ),
-                    )
-                  ],
-                )
-              ],
-            )
-          ],
+                      Container(
+                        child: Text(
+                          'Gallery',
+                          style: TextStyle(color: iconColor),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
