@@ -1,15 +1,15 @@
 name: image_picker_extended
 description: A new Flutter package project.
-version: 0.0.4
+version: 0.0.5
 homepage: "https://github.com/Lykeosovandara/Image-Picker-Extended"
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  image_picker: ^0.6.5
+  image_picker: ^0.8.4+9
 
 dev_dependencies:
   flutter_test:

@@ -9,11 +9,11 @@ import 'package:image_picker/image_picker.dart';
 class ImagePickerExtends {
   /// Choose image
   /// If permission deny it will return [null]
-  static Future<File> chooseCamera(BuildContext context) async {
-    File file;
+  static Future<PickedFile?> chooseCamera(BuildContext context) async {
+    PickedFile? file;
 
     try {
-      file = await ImagePicker.pickImage(source: ImageSource.camera);
+      file = await ImagePicker.platform.pickImage(source: ImageSource.camera);
     } catch (e) {
       _showAlertPermissionDeny(context);
     }
@@ -22,25 +22,11 @@ class ImagePickerExtends {
 
   /// Choose image
   /// If permission deny it will return [null]
-  static Future<File> chooseGallery(BuildContext context) async {
-    File file;
+  static Future<PickedFile?> chooseGallery(BuildContext context) async {
+    PickedFile? file;
 
     try {
-      file = await ImagePicker.pickImage(source: ImageSource.gallery);
-    } catch (e) {
-      _showAlertPermissionDeny(context);
-    }
-
-    return file;
-  }
-
-  /// Choose image
-  /// If permission deny it will return [null]
-  static Future<File> chooseCameraVideo(BuildContext context) async {
-    File file;
-
-    try {
-      file = await ImagePicker.pickVideo(source: ImageSource.camera);
+      file = await ImagePicker.platform.pickImage(source: ImageSource.gallery);
     } catch (e) {
       _showAlertPermissionDeny(context);
     }
@@ -50,11 +36,25 @@ class ImagePickerExtends {
 
   /// Choose image
   /// If permission deny it will return [null]
-  static Future<File> chooseGalleryVideo(BuildContext context) async {
-    File file;
+  static Future<PickedFile?> chooseCameraVideo(BuildContext context) async {
+    PickedFile? file;
 
     try {
-      file = await ImagePicker.pickVideo(source: ImageSource.gallery);
+      file = await ImagePicker.platform.pickVideo(source: ImageSource.camera);
+    } catch (e) {
+      _showAlertPermissionDeny(context);
+    }
+
+    return file;
+  }
+
+  /// Choose image
+  /// If permission deny it will return [null]
+  static Future<PickedFile?> chooseGalleryVideo(BuildContext context) async {
+    PickedFile? file;
+
+    try {
+      file = await ImagePicker.platform.pickVideo(source: ImageSource.gallery);
     } catch (e) {
       _showAlertPermissionDeny(context);
     }
@@ -77,7 +77,7 @@ class ImagePickerExtends {
         title: Text("Permission"),
         content: Text("Please turn on permission in the settings"),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: Text("OK"),
             onPressed: () => Navigator.of(context).pop(),
           ),
@@ -104,7 +104,7 @@ class ImagePickerExtends {
   }
 
   static void chooseImage(BuildContext context,
-      {@required Function(File file) selectedImage,
+      {required Function(PickedFile? file) selectedImage,
       Color iconColor = Colors.black45}) {
     showModalBottomSheet(
       context: context,
